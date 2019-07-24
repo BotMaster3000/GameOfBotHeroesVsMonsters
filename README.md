@@ -47,6 +47,6 @@ World-Generation
 - Heroes can reproduce over limit if they are capable to do so.
 
 - Progress (or loss of it) in the AI of heroes happens when reproducing
--> New Random generated heroes spawn with [completly random neural networks | an average doing network](?)
+-> New Random generated heroes spawn with \[completly random neural networks | an average doing network](?)
 
 
