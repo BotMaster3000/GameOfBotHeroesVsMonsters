@@ -12,5 +12,12 @@ namespace GameOfBotLib.Models.Map
         public int Height { get; }
 
         public ITile[] Tiles { get; }
+
+        public Map(int width, int height, ITile[] tiles)
+        {
+            Width = width;
+            Height = height;
+            Tiles = tiles;
+        }
     }
 }

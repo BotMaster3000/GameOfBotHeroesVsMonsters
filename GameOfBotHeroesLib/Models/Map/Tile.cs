@@ -17,5 +17,12 @@ namespace GameOfBotLib.Models.Map
         public BuildingTypes[] BuildingTypes { get; }
 
         public ITile[] NeighboringTiles { get; }
+
+        public Tile(int xPox, int yPos, TileValues tileValue)
+        {
+            XPos = xPox;
+            YPos = yPos;
+            TileValue = tileValue;
+        }
     }
 }

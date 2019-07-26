@@ -7,7 +7,7 @@ namespace GameOfBotLib.Interfaces
 {
     public interface IMapCreator
     {
-        IMap GenerateFlatMap(IDictionary<TileValues, int> tilevalueAndAppearanceChance);
+        IMap GenerateFlatMap(int mapWidth, int mapHeight, IDictionary<TileValues, int> tilevalueAndAppearanceChance);
         void GenerateMapElements(IMap map);
     }
 }
