@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GameOfBotLib.Interfaces
 {
-    public interface IMapInterface
+    public interface IMap
     {
         int Width { get; }
         int Height { get; }
