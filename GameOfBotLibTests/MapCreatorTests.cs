@@ -13,8 +13,8 @@ namespace GameOfBotLibTests
         [TestMethod]
         public void MapCreatorGenerateFlatMapTest()
         {
-            const int MapWidth = 10;
-            const int MapHeight = 10;
+            const int MapWidth = 100;
+            const int MapHeight = 100;
 
             Dictionary<TileValues, int> tileValueAndAppearanceChance = new Dictionary<TileValues, int>()
             {
@@ -38,10 +38,16 @@ namespace GameOfBotLibTests
             {
                 for (int yPos = 0; yPos < MapHeight; ++yPos)
                 {
-                    Assert.AreEqual(1,
+                    int tempXPos = xPos; // Needed because of lambda-creation and tight loops
+                    int tempYPos = yPos;
+
+                    System.Threading.Tasks.Task.Factory.StartNew(() =>
+                    {
+                        Assert.AreEqual(1,
                         map.Tiles.Count(x
-                        => x.XPos == xPos
-                        && x.YPos == yPos)); // Should contain every XPos and YPos exactly 1 time
+                        => x.XPos == tempXPos
+                        && x.YPos == tempYPos)); // Should contain every XPos and YPos exactly 1 time
+                    });
                 }
             }
         }
