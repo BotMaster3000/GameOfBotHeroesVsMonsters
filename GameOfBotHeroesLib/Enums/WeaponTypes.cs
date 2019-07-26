@@ -4,8 +4,8 @@ using System.Text;
 
 namespace GameOfBotLib.Enums
 {
-    public enum TileValues
+    public enum WeaponTypes
     {
-        Grassland, Forest, City, Village, Fortress
+        Sword, Spear, Axe,
     }
 }

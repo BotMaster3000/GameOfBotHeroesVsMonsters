@@ -6,6 +6,6 @@ namespace GameOfBotLib.Enums
 {
     public enum CreatureTypes
     {
-
+        Human, Goblin, Troll,
     }
 }

@@ -11,5 +11,7 @@ namespace GameOfBotLib.Models.Items
         public int Defense { get; }
 
         public ItemType ItemType { get; }
+
+        public ArmorTypes ArmorType { get; }
     }
 }
