@@ -4,7 +4,7 @@ namespace GameOfBotHeroesVsMonsters
 {
     class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
             Console.WriteLine("Hello World!");
         }
