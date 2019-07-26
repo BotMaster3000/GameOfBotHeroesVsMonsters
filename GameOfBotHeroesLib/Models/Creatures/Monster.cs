@@ -13,5 +13,7 @@ namespace GameOfBotLib.Models.Creatures
         public CreatureTypes CreatureType { get; }
 
         public int Health { get; set; }
+
+        public IInventory Inventory { get; }
     }
 }

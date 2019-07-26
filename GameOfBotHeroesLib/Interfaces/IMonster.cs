@@ -6,6 +6,6 @@ namespace GameOfBotLib.Interfaces
 {
     public interface IMonster : ICreature
     {
-
+        IInventory Inventory { get; }
     }
 }

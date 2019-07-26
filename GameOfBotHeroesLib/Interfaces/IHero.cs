@@ -6,6 +6,6 @@ namespace GameOfBotLib.Interfaces
 {
     public interface IHero : IIntelligentCreature
     {
-
+        IInventory Inventory { get; }
     }
 }
