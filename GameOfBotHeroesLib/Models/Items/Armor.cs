@@ -8,10 +8,10 @@ namespace GameOfBotLib.Models.Items
 {
     public class Armor : IArmor
     {
-        public int Defense { get; }
-
         public ItemType ItemType { get; }
 
         public ArmorTypes ArmorType { get; }
+
+        public int Defense { get; }
     }
 }

@@ -8,13 +8,13 @@ namespace GameOfBotLib.Models.Creatures
 {
     public class Hero : IHero
     {
-        public string Title { get; }
-
-        public string Name { get; }
-
         public int ID { get; }
 
         public CreatureTypes CreatureType { get; }
+
+        public string Title { get; }
+
+        public string Name { get; }
 
         public int Health { get; set; }
 
