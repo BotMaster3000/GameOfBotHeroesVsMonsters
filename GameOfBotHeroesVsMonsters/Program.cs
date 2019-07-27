@@ -10,15 +10,15 @@ namespace GameOfBotHeroesVsMonsters
     {
         private static void Main()
         {
-            const int MapWidth = 10;
-            const int MapHeight = 10;
+            const int MapWidth = 20;
+            const int MapHeight = 20;
             Dictionary<TileValues, int> tileValuesAndOccuranceChance = new Dictionary<TileValues, int>
             {
-                { TileValues.City, 20 },
-                { TileValues.Forest, 250 },
                 { TileValues.Fortress, 5 },
-                { TileValues.Grassland, 500 },
-                { TileValues.Village, 50 },
+                { TileValues.City, 20 },
+                { TileValues.Village, 100 },
+                { TileValues.Forest, 1000 },
+                { TileValues.Grassland, 2500 },
             };
 
             MapCreator creator = new MapCreator();
