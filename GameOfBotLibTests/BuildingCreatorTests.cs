@@ -14,11 +14,13 @@ namespace GameOfBotLibTests
         [TestMethod]
         public void CreateBuildingTest()
         {
-            const BuildingTypes Type = BuildingTypes.ArmorShop;
+            foreach(BuildingTypes buildingType in Enum.GetValues(typeof(BuildingTypes)))
+            {
+                BuildingCreator creator = new BuildingCreator();
+                IBuilding building = creator.CreateBuilding(buildingType);
 
-            BuildingCreator creator = new BuildingCreator();
-            IBuilding building = creator.CreateBuilding(Type);
-            Assert.AreEqual(Type, building.BuildingType);
+                Assert.AreEqual(buildingType, building.BuildingType);
+            }
         }
     }
 }
