@@ -5,9 +5,8 @@ using GameOfBotLib.Enums;
 
 namespace GameOfBotLib.Interfaces
 {
-    public interface IBuilding
+    public interface IShop
     {
-        BuildingTypes BuildingType { get; }
-        IShop[] Shops { get; }
+        ShopTypes ShopType { get; }
     }
 }

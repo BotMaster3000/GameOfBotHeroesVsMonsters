@@ -6,10 +6,8 @@ using GameOfBotLib.Interfaces;
 
 namespace GameOfBotLib.Models.Map
 {
-    public class Building : IBuilding
+    public class Shop : IShop
     {
-        public BuildingTypes BuildingType { get; }
-
-        public IShop[] Shops { get; }
+        public ShopTypes ShopType { get; }
     }
 }
