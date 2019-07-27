@@ -7,7 +7,7 @@ namespace GameOfBotLib.Interfaces
 {
     public interface IWeapon : IItem
     {
-        int Attack { get; }
+        int AttackValue { get; }
         WeaponTypes WeaponType { get; }
     }
 }

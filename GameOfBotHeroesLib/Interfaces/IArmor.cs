@@ -7,7 +7,7 @@ namespace GameOfBotLib.Interfaces
 {
     public interface IArmor : IItem
     {
-        int Defense { get; }
+        int DefenseValue { get; }
         ArmorTypes ArmorType { get; }
     }
 }

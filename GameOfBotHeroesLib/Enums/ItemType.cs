@@ -6,6 +6,8 @@ namespace GameOfBotLib.Enums
 {
     public enum ItemType
     {
-        Weapon, Armor
+        UndefinedItemType,
+        Weapon,
+        Armor
     }
 }

@@ -8,11 +8,14 @@ namespace GameOfBotLib.Models.Items
 {
     public class Weapon : IWeapon
     {
-        public ItemType ItemType { get; }
-
+        public ItemType ItemType { get; } = ItemType.Weapon;
         public WeaponTypes WeaponType { get; }
+        public int AttackValue { get; }
 
-        public int Attack { get; }
-
+        public Weapon(WeaponTypes weaponType, int attackValue)
+        {
+            WeaponType = weaponType;
+            AttackValue = attackValue;
+        }
     }
 }

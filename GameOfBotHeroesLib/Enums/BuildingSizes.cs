@@ -4,11 +4,10 @@ using System.Text;
 
 namespace GameOfBotLib.Enums
 {
-    public enum WeaponTypes
+    public enum BuildingSizes
     {
-        UndefinedWeaponType,
-        Sword,
-        Spear,
-        Axe,
+        Small,
+        Medium,
+        Large,
     }
 }

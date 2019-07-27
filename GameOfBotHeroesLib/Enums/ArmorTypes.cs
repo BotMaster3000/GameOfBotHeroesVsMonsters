@@ -6,6 +6,8 @@ namespace GameOfBotLib.Enums
 {
     public enum ArmorTypes
     {
-        CopperArmor, IronArmor
+        UndefinedArmorType,
+        CopperArmor,
+        IronArmor,
     }
 }
