@@ -17,7 +17,7 @@ namespace GameOfBotLibTests
         [TestMethod]
         public void CreateShopTest()
         {
-            const ShopTypes ShopType = ShopTypes.BitOfEverythingShop;
+            const ShopTypes ShopType = ShopTypes.ItemShop;
 
             IShopItem[] shopItems = new IShopItem[]
             {
@@ -63,6 +63,51 @@ namespace GameOfBotLibTests
                     Assert.Fail();
                 }
             }
+        }
+
+        [TestMethod]
+        public void RandomGenerateShop_Tavern()
+        {
+            ShopIsValid(ShopTypes.Tavern);
+        }
+
+        [TestMethod]
+        public void RandomGenerateShop_Inn()
+        {
+            ShopIsValid(ShopTypes.Inn);
+        }
+
+        [TestMethod]
+        public void RandomGenerateShop_ArmorShop()
+        {
+            ShopIsValid(ShopTypes.ArmorShop);
+        }
+
+        [TestMethod]
+        public void RandomGenerateShop_WeaponShop()
+        {
+            ShopIsValid(ShopTypes.WeaponShop);
+        }
+
+        [TestMethod]
+        public void RandomGenerateShop_ItemShop()
+        {
+            ShopIsValid(ShopTypes.ItemShop);
+        }
+
+        [TestMethod]
+        public void RandomGenerateShop_BitOfEverythingShop()
+        {
+            ShopIsValid(ShopTypes.BitOfEverythingShopType);
+        }
+
+        private void ShopIsValid(ShopTypes type)
+        {
+            ShopCreator creator = new ShopCreator();
+            IShop shop = creator.GenerateRandomShop(type);
+
+            Assert.AreEqual(type, shop.ShopType);
+            Assert.IsTrue(shop.ShopInventory.ShopItems.Length > 0);
         }
     }
 }

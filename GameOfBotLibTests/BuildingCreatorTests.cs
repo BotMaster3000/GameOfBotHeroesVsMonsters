@@ -22,5 +22,50 @@ namespace GameOfBotLibTests
                 Assert.AreEqual(buildingType, building.BuildingType);
             }
         }
+
+        [TestMethod]
+        public void GenerateBuildingTest_Tavern()
+        {
+            IsValidBuilding(BuildingTypes.Tavern);
+        }
+
+        [TestMethod]
+        public void GenerateBuildingTest_Inn()
+        {
+            IsValidBuilding(BuildingTypes.Inn);
+        }
+
+        [TestMethod]
+        public void GenerateBuildingTest_WeaponShop()
+        {
+            IsValidBuilding(BuildingTypes.WeaponShop);
+        }
+
+        [TestMethod]
+        public void GenerateBuildingTest_ArmorShop()
+        {
+            IsValidBuilding(BuildingTypes.ArmorShop);
+        }
+
+        [TestMethod]
+        public void GenerateBuildingTest_ItemShop()
+        {
+            IsValidBuilding(BuildingTypes.ItemShop);
+        }
+
+        [TestMethod]
+        public void GenerateBuildingTest_BitOfEverything()
+        {
+            IsValidBuilding(BuildingTypes.BitOfEverythingStore);
+        }
+
+        private void IsValidBuilding(BuildingTypes buildingType)
+        {
+            BuildingCreator creator = new BuildingCreator();
+            IBuilding building = creator.RandomGenerateBuilding(buildingType);
+
+            Assert.AreEqual(buildingType, building.BuildingType);
+            Assert.IsTrue(building.Shop.ShopInventory.ShopItems.Length > 0);
+        }
     }
 }

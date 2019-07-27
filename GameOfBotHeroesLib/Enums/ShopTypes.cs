@@ -6,10 +6,12 @@ namespace GameOfBotLib.Enums
 {
     public enum ShopTypes
     {
+        UndefinedShopType,
         Tavern,
         Inn,
         ArmorShop,
         WeaponShop,
-        BitOfEverythingShop,
+        ItemShop,
+        BitOfEverythingShopType
     }
 }

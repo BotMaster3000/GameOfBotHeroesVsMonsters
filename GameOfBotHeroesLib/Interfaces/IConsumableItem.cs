@@ -5,8 +5,8 @@ using GameOfBotLib.Enums;
 
 namespace GameOfBotLib.Interfaces
 {
-    public interface IItem
+    public interface IConsumableItem : IItem
     {
-        ItemTypes ItemType { get; }
+        ConsumableItemTypes ConsumableItemType { get; }
     }
 }

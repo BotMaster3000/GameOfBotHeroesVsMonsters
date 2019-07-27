@@ -8,5 +8,6 @@ namespace GameOfBotLib.Interfaces
     public interface IBuildingCreator
     {
         IBuilding CreateBuilding(BuildingTypes buildingType);
+        IBuilding RandomGenerateBuilding(BuildingTypes buildingType);
     }
 }

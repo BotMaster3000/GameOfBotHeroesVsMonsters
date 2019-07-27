@@ -8,5 +8,6 @@ namespace GameOfBotLib.Interfaces
     public interface IShopCreator
     {
         IShop CreateShop(ShopTypes shopType, IShopItem[] shopItems);
+        IShop GenerateRandomShop(ShopTypes shopType);
     }
 }

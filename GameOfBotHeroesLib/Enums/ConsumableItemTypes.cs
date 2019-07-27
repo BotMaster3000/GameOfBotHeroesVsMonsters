@@ -4,10 +4,9 @@ using System.Text;
 
 namespace GameOfBotLib.Enums
 {
-    public enum ItemType
+    public enum ConsumableItemTypes
     {
-        UndefinedItemType,
-        Weapon,
-        Armor
+        HealingPotion,
+        Beer,
     }
 }

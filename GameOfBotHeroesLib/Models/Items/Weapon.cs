@@ -8,7 +8,7 @@ namespace GameOfBotLib.Models.Items
 {
     public class Weapon : IWeapon
     {
-        public ItemType ItemType { get; } = ItemType.Weapon;
+        public ItemTypes ItemType { get; } = ItemTypes.Weapon;
         public WeaponTypes WeaponType { get; }
         public int AttackValue { get; }
 
@@ -16,6 +16,17 @@ namespace GameOfBotLib.Models.Items
         {
             WeaponType = weaponType;
             AttackValue = attackValue;
+        }
+
+        public static Weapon GetWeapon(WeaponTypes weaponType)
+        {
+            return weaponType switch
+            {
+                WeaponTypes.Sword => new Weapon(weaponType, 10),
+                WeaponTypes.Axe => new Weapon(weaponType, 8),
+                WeaponTypes.Spear => new Weapon(weaponType, 5),
+                _ => null
+            };
         }
     }
 }

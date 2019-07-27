@@ -5,8 +5,8 @@ using GameOfBotLib.Enums;
 
 namespace GameOfBotLib.Interfaces
 {
-    public interface IItem
+    public interface IShopItemGenerator
     {
-        ItemTypes ItemType { get; }
+        public IShopItem[] RandomGenerateShopItems(ShopTypes shopType, int minItems, int maxItems);
     }
 }
