@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameOfBotHeroesVsMonsters",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameOfBotLib", "GameOfBotHeroesLib\GameOfBotLib.csproj", "{AE05905B-221B-4E5F-807F-59FBB3912C67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfBotLibTests", "GameOfBotLibTests\GameOfBotLibTests.csproj", "{69247909-1590-48AE-B87B-C671596BA88B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameOfBotLibTests", "GameOfBotLibTests\GameOfBotLibTests.csproj", "{69247909-1590-48AE-B87B-C671596BA88B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{AE05905B-221B-4E5F-807F-59FBB3912C67} = {AE05905B-221B-4E5F-807F-59FBB3912C67}
 	EndProjectSection
