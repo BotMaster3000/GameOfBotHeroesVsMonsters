@@ -15,7 +15,7 @@ namespace GameOfBotLibTests
         private const int MinItems = 50;
         private const int MaxItems = 100;
 
-        private const int TotalRuns = 1000;
+        private const int TotalRuns = 100;
 
         [TestMethod]
         public void RandomGenerateShopItemsTest_Tavern()
