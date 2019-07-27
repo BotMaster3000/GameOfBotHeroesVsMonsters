@@ -10,5 +10,7 @@ namespace GameOfBotLib.Enums
         ArmorStore,
         MiscStore,
         BitOfEverythingStore,
+        Tavern,
+        Inn
     }
 }
