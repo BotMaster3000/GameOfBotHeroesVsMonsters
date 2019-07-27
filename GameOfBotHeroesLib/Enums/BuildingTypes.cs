@@ -6,6 +6,11 @@ namespace GameOfBotLib.Enums
 {
     public enum BuildingTypes
     {
-        Tavern, WeaponShop, ArmorShop, ItemShop,
+        Tavern,
+        Inn,
+        WeaponShop,
+        ArmorShop,
+        ItemShop,
+        BitOfEverythingStore,
     }
 }

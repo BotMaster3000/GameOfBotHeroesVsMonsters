@@ -10,6 +10,9 @@ namespace GameOfBotLib.Models.Map
     {
         public BuildingTypes BuildingType { get; }
 
-        public IShop[] Shops { get; }
+        public Building(BuildingTypes buildingType)
+        {
+            BuildingType = buildingType;
+        }
     }
 }

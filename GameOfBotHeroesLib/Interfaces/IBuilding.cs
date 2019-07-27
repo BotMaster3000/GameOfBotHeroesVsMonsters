@@ -8,6 +8,5 @@ namespace GameOfBotLib.Interfaces
     public interface IBuilding
     {
         BuildingTypes BuildingType { get; }
-        IShop[] Shops { get; }
     }
 }
