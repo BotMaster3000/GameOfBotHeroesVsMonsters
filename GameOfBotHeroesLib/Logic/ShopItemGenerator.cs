@@ -21,7 +21,7 @@ namespace GameOfBotLib.Logic
 
             IDictionary<IItem, int> itemsAndStockQuantity = GetItemAndStockOfItemPool(itemPool, totalItemsGenerated);
 
-            IShopItem[] shopItems = new IShopItem[totalItemsGenerated];
+            IShopItem[] shopItems = new IShopItem[itemsAndStockQuantity.Count];
             int counter = 0;
             foreach (KeyValuePair<IItem, int> itemAndStockQuantity in itemsAndStockQuantity)
             {

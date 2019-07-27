@@ -6,6 +6,7 @@ using GameOfBotLib.Logic;
 using GameOfBotLib.Enums;
 using GameOfBotLib.Interfaces;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace GameOfBotLibTests
 {
@@ -66,8 +67,14 @@ namespace GameOfBotLibTests
             {
                 IShopItem[] shopItems = itemGenerator.RandomGenerateShopItems(shopType, MinItems, MaxItems);
 
-                Assert.IsTrue(shopItems.Length >= 50
-                    && shopItems.Length <= 100);
+                foreach(IShopItem item in shopItems)
+                {
+                    Assert.IsNotNull(item);
+                }
+
+                int totalStockedItems = shopItems.Sum(x => x.StockQuantity);
+                Assert.IsTrue(totalStockedItems >= MinItems
+                    && totalStockedItems <= MaxItems);
             }
         }
     }
