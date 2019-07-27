@@ -13,8 +13,7 @@ namespace GameOfBotLib.Models.Map
         public int YPos { get; }
 
         public TileValues TileValue { get; }
-
-        public BuildingTypes[] BuildingTypes { get; }
+        public IBuilding[] Buildings { get; }
 
         public ITile[] NeighboringTiles { get; }
 

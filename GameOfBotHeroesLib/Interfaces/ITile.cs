@@ -10,7 +10,7 @@ namespace GameOfBotLib.Interfaces
         int XPos { get; }
         int YPos { get; }
         TileValues TileValue { get; }
-        BuildingTypes[] BuildingTypes { get; }
+        IBuilding[] Buildings { get; }
         ITile[] NeighboringTiles { get; }
     }
 }
