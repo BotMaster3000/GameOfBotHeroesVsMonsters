@@ -23,8 +23,11 @@ namespace GameOfBotHeroesVsMonsters
 
             MapCreator creator = new MapCreator();
             IMap map = creator.GenerateFlatMap(MapWidth, MapHeight, tileValuesAndOccuranceChance);
+            creator.GenerateMapElements(map);
 
             MapDrawer.DrawMap(map);
+
+            MapDrawer.DrawMapTileShops(map);
 
             Console.WriteLine("Hello World!");
         }

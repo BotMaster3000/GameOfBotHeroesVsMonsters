@@ -56,5 +56,62 @@ namespace GameOfBotLibTests
         {
             return map.Tiles.Count(x => x.TileValue == tileValue);
         }
+
+        [TestMethod]
+        public void GenerateMapElementsTest()
+        {
+            const int MapWidth = 10;
+            const int MapHeight = 10;
+
+            Dictionary<TileValues, int> tileValueAndAppearanceChance = new Dictionary<TileValues, int>()
+            {
+                { TileValues.Grassland, 10},
+                { TileValues.Forest, 10 },
+                { TileValues.Village, 10},
+                { TileValues.City, 10 },
+                { TileValues.Fortress, 10},
+            };
+
+            MapCreator creator = new MapCreator();
+            IMap map = creator.GenerateFlatMap(MapWidth, MapHeight, tileValueAndAppearanceChance);
+
+            creator.GenerateMapElements(map);
+
+            Assert.AreEqual(MapWidth, map.Width);
+            Assert.AreEqual(MapHeight, map.Height);
+
+            foreach (ITile tile in map.Tiles)
+            {
+                switch (tile.TileValue)
+                {
+                    case TileValues.City:
+                    case TileValues.Village:
+                    case TileValues.Fortress:
+                        Assert.IsTrue(tile.Buildings.Length > 0);
+                        foreach (IBuilding building in tile.Buildings)
+                        {
+                            switch (building.BuildingType)
+                            {
+                                case BuildingTypes.ArmorShop:
+                                case BuildingTypes.WeaponShop:
+                                case BuildingTypes.Tavern:
+                                case BuildingTypes.Inn:
+                                case BuildingTypes.BitOfEverythingStore:
+                                case BuildingTypes.ItemShop:
+                                    Assert.IsNotNull(building.Shop);
+                                    Assert.IsNotNull(building.Shop.ShopInventory);
+                                    Assert.IsNotNull(building.Shop.ShopInventory.ShopItems);
+                                    Assert.IsTrue(building.Shop.ShopInventory.ShopItems.Length > 0);
+                                    break;
+                            }
+                        }
+                        break;
+                    case TileValues.Grassland:
+                    case TileValues.Forest:
+                        Assert.IsTrue(tile.Buildings == null || tile.Buildings.Length > 0);
+                        break;
+                }
+            }
+        }
     }
 }

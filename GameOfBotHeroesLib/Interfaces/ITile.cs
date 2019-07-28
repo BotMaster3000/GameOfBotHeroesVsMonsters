@@ -12,5 +12,7 @@ namespace GameOfBotLib.Interfaces
         TileValues TileValue { get; }
         IBuilding[] Buildings { get; }
         ITile[] NeighboringTiles { get; }
+
+        void SetBuildings(IBuilding[] buildings);
     }
 }

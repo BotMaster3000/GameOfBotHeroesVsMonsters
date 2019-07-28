@@ -13,7 +13,7 @@ namespace GameOfBotLib.Models.Map
         public int YPos { get; }
 
         public TileValues TileValue { get; }
-        public IBuilding[] Buildings { get; }
+        public IBuilding[] Buildings { get; private set; }
 
         public ITile[] NeighboringTiles { get; }
 
@@ -22,6 +22,11 @@ namespace GameOfBotLib.Models.Map
             XPos = xPox;
             YPos = yPos;
             TileValue = tileValue;
+        }
+
+        public void SetBuildings(IBuilding[] buildings)
+        {
+            Buildings = buildings;
         }
     }
 }

@@ -49,5 +49,44 @@ namespace GameOfBotHeroesVsMonsters
                     return ConsoleColor.Black;
             }
         }
+
+        public static void DrawMapTileShops(IMap map)
+        {
+            foreach (ITile tile in map.Tiles)
+            {
+                if (tile.Buildings?.Length > 0)
+                {
+
+                    Console.WriteLine();
+                    Console.WriteLine(tile.TileValue);
+                    Console.WriteLine($"XPos: {tile.XPos} YPos {tile.YPos}");
+
+                    foreach (IBuilding building in tile.Buildings)
+                    {
+                        Console.WriteLine(building.BuildingType);
+                        Console.WriteLine(building.Shop.ShopType);
+                        foreach (IShopItem shopItem in building.Shop.ShopInventory.ShopItems)
+                        {
+                            if (shopItem.Item is IArmor armor)
+                            {
+                                Console.WriteLine($"ArmorType: {armor.ArmorType} Price: {shopItem.Price} Stock: {shopItem.StockQuantity}");
+                            }
+                            else if (shopItem.Item is IWeapon weapon)
+                            {
+                                Console.WriteLine($"WeaponType: {weapon.WeaponType} Price: {shopItem.Price} Stock: {shopItem.StockQuantity}");
+                            }
+                            else if (shopItem.Item is IConsumableItem consumable)
+                            {
+                                Console.WriteLine($"ConsumableType: {consumable.ConsumableItemType} Price: {shopItem.Price} Stock: {shopItem.StockQuantity}");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"ItemType: {shopItem.Item.ItemType} Price: {shopItem.Price} Stock: {shopItem.StockQuantity}");
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
