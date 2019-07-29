@@ -8,5 +8,8 @@ namespace GameOfBotLib.Enums
     {
         HealingPotion,
         Beer,
+        Bread,
+        Wine,
+        Water,
     }
 }
