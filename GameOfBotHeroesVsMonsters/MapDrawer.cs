@@ -50,38 +50,64 @@ namespace GameOfBotHeroesVsMonsters
             }
         }
 
-        public static void DrawMapTileShops(IMap map)
+        public static void DrawMapTileShopsAndNpcs(IMap map)
         {
             foreach (ITile tile in map.Tiles)
             {
-                if (tile.Buildings?.Length > 0)
+                if (tile.Buildings?.Length > 0 || tile.CreatureList.Count > 0)
                 {
-
                     Console.WriteLine();
                     Console.WriteLine(tile.TileValue);
                     Console.WriteLine($"XPos: {tile.XPos} YPos {tile.YPos}");
 
-                    foreach (IBuilding building in tile.Buildings)
+                    if(tile.Buildings?.Length > 0)
                     {
-                        Console.WriteLine(building.BuildingType);
-                        Console.WriteLine(building.Shop.ShopType);
-                        foreach (IShopItem shopItem in building.Shop.ShopInventory.ShopItems)
+                        foreach (IBuilding building in tile.Buildings)
                         {
-                            if (shopItem.Item is IArmor armor)
+                            Console.WriteLine(building.BuildingType);
+                            Console.WriteLine(building.Shop.ShopType);
+                            foreach (IShopItem shopItem in building.Shop.ShopInventory.ShopItems)
                             {
-                                Console.WriteLine($"ArmorType: {armor.ArmorType} Price: {shopItem.Price} Stock: {shopItem.StockQuantity}");
+                                if (shopItem.Item is IArmor armor)
+                                {
+                                    Console.WriteLine($"ArmorType: {armor.ArmorType} Price: {shopItem.Price} Stock: {shopItem.StockQuantity}");
+                                }
+                                else if (shopItem.Item is IWeapon weapon)
+                                {
+                                    Console.WriteLine($"WeaponType: {weapon.WeaponType} Price: {shopItem.Price} Stock: {shopItem.StockQuantity}");
+                                }
+                                else if (shopItem.Item is IConsumableItem consumable)
+                                {
+                                    Console.WriteLine($"ConsumableType: {consumable.ConsumableItemType} Price: {shopItem.Price} Stock: {shopItem.StockQuantity}");
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"ItemType: {shopItem.Item.ItemType} Price: {shopItem.Price} Stock: {shopItem.StockQuantity}");
+                                }
                             }
-                            else if (shopItem.Item is IWeapon weapon)
+                        }
+                    }
+
+
+                    foreach(ICreature creature in tile.CreatureList)
+                    {
+                        Console.WriteLine($"{creature.ID} {creature.CreatureType}");
+                        Console.WriteLine($"Level: {creature.Level} XP: {creature.Experience} HP: {creature.Health} MaxHP: {creature.MaxHealth}");
+
+                        if(creature is IHero hero)
+                        {
+                            Console.WriteLine($"Gold: {hero.Inventory.Gold}");
+                            foreach(IItem item in hero.Inventory.Items)
                             {
-                                Console.WriteLine($"WeaponType: {weapon.WeaponType} Price: {shopItem.Price} Stock: {shopItem.StockQuantity}");
+                                Console.WriteLine(item.ItemType);
                             }
-                            else if (shopItem.Item is IConsumableItem consumable)
+                        }
+                        else if(creature is IMonster monster)
+                        {
+                            Console.WriteLine($"Gold: {monster.Inventory.Gold}");
+                            foreach (IItem item in monster.Inventory.Items)
                             {
-                                Console.WriteLine($"ConsumableType: {consumable.ConsumableItemType} Price: {shopItem.Price} Stock: {shopItem.StockQuantity}");
-                            }
-                            else
-                            {
-                                Console.WriteLine($"ItemType: {shopItem.Item.ItemType} Price: {shopItem.Price} Stock: {shopItem.StockQuantity}");
+                                Console.WriteLine(item.ItemType);
                             }
                         }
                     }

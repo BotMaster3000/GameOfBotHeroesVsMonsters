@@ -21,13 +21,21 @@ namespace GameOfBotHeroesVsMonsters
                 { TileValues.Grassland, 2500 },
             };
 
+            Dictionary<CreatureTypes, int> creatureTypeAndTotalAmountGenerated = new Dictionary<CreatureTypes, int>()
+            {
+                { CreatureTypes.Human , 100 },
+                { CreatureTypes.Goblin , 200 },
+                { CreatureTypes.Troll , 50 },
+            };
+
             MapCreator creator = new MapCreator();
             IMap map = creator.GenerateFlatMap(MapWidth, MapHeight, tileValuesAndOccuranceChance);
-            creator.GenerateMapElements(map);
 
             MapDrawer.DrawMap(map);
 
-            MapDrawer.DrawMapTileShops(map);
+            creator.GenerateMapElements(map);
+            creator.AddCreaturesToMap(map, creatureTypeAndTotalAmountGenerated);
+            MapDrawer.DrawMapTileShopsAndNpcs(map);
 
             Console.WriteLine("Hello World!");
         }
