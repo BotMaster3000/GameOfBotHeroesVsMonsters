@@ -11,5 +11,9 @@ namespace GameOfBotLib.Interfaces
         CreatureTypes CreatureType { get; }
 
         int Health { get; set; }
+        int MaxHealth { get; }
+
+        int Experience { get; }
+        int Level { get; }
     }
 }

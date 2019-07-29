@@ -17,6 +17,8 @@ namespace GameOfBotLib.Models.Map
 
         public ITile[] NeighboringTiles { get; }
 
+        public IList<ICreature> CreatureList { get; } = new List<ICreature>();
+
         public Tile(int xPox, int yPos, TileValues tileValue)
         {
             XPos = xPox;

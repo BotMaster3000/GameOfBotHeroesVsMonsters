@@ -13,6 +13,8 @@ namespace GameOfBotLib.Interfaces
         IBuilding[] Buildings { get; }
         ITile[] NeighboringTiles { get; }
 
+        IList<ICreature> CreatureList { get; }
+
         void SetBuildings(IBuilding[] buildings);
     }
 }
