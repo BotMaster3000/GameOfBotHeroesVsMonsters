@@ -49,4 +49,4 @@ World-Generation
 - Progress (or loss of it) in the AI of heroes happens when reproducing
 -> New Random generated heroes spawn with \[completly random neural networks | an average doing network](?)
 
-
+![Basic World-Generation example of the current state in progress outputtet to a Console-Application](https://i.imgur.com/kH4kkCL.png)
