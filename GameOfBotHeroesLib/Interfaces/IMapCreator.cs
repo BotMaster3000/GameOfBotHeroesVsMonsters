@@ -9,5 +9,6 @@ namespace GameOfBotLib.Interfaces
     {
         IMap GenerateFlatMap(int mapWidth, int mapHeight, IDictionary<TileValues, int> tilevalueAndAppearanceChance);
         void GenerateMapElements(IMap map);
+        void AddCreaturesToMap(IMap map, IDictionary<CreatureTypes, int> creatureTypeAndTotalAmountGenerated);
     }
 }

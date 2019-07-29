@@ -113,5 +113,78 @@ namespace GameOfBotLibTests
                 }
             }
         }
+
+        [TestMethod]
+        public void AddCreaturesToMapTest()
+        {
+            const int MapWidth = 10;
+            const int MapHeight = 10;
+
+            IDictionary<TileValues, int> tileValueAndAppearanceChance = new Dictionary<TileValues, int>()
+            {
+                { TileValues.Grassland, 10},
+                { TileValues.Forest, 10 },
+                { TileValues.Village, 10},
+                { TileValues.City, 10 },
+                { TileValues.Fortress, 10},
+            };
+
+            IDictionary<CreatureTypes, int> creatureTypeAndTotalAmountGenerated = new Dictionary<CreatureTypes, int>()
+            {
+                { CreatureTypes.Human, 100 },
+                { CreatureTypes.Goblin, 200 },
+                { CreatureTypes.Troll, 50 },
+            };
+
+            IMapCreator creator = new MapCreator();
+            IMap map = creator.GenerateFlatMap(MapWidth, MapHeight, tileValueAndAppearanceChance);
+            creator.GenerateMapElements(map);
+            creator.AddCreaturesToMap(map, creatureTypeAndTotalAmountGenerated);
+
+            ITile[] creatureTiles = map.Tiles
+                .Where(x
+                    => x.CreatureList.Count > 0)
+                .ToArray();
+
+            foreach (KeyValuePair<CreatureTypes, int> creatureTypeAndGenerated in creatureTypeAndTotalAmountGenerated)
+            {
+                IList<IList<ICreature>> creaturesListLists = creatureTiles.Select(x => x.CreatureList).ToList();
+                int creatureCount = 0;
+                foreach(IList<ICreature> creatureList in creaturesListLists)
+                {
+                    foreach(ICreature creature in creatureList)
+                    {
+                        if(creature.CreatureType == creatureTypeAndGenerated.Key)
+                        {
+                            ++creatureCount;
+                        }
+                    }
+                }
+
+                Assert.AreEqual(creatureTypeAndGenerated.Value, creatureCount);
+            }
+
+            foreach (ITile tile in creatureTiles)
+            {
+                switch (tile.TileValue)
+                {
+                    case TileValues.Village:
+                    case TileValues.City:
+                    case TileValues.Fortress:
+                        int totalAccepptedCreatures = tile.CreatureList.Count(x // Count total Human-Creatures
+                            => x.CreatureType == CreatureTypes.Human);
+                        Assert.AreEqual(totalAccepptedCreatures, tile.CreatureList.Count);
+                        break;
+                    case TileValues.Forest:
+                    case TileValues.Grassland:
+                        int totalNotAcceptedCreatures = tile.CreatureList.Count(x // Count total Not-Human-Creatures
+                            => x.CreatureType != CreatureTypes.Human);
+                        Assert.AreEqual(totalNotAcceptedCreatures, tile.CreatureList.Count);
+                        break;
+                    default:
+                        throw new System.Exception("Unchecked Tile-Value");
+                }
+            }
+        }
     }
 }

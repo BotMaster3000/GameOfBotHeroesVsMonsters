@@ -4,6 +4,7 @@ using System.Text;
 using GameOfBotLib.Enums;
 using GameOfBotLib.Interfaces;
 using GameOfBotLib.Models.Map;
+using System.Linq;
 
 namespace GameOfBotLib.Logic
 {
@@ -117,6 +118,42 @@ namespace GameOfBotLib.Logic
                 buildings[i] = creator.RandomGenerateBuilding(buildingToGenerate);
             }
             return buildings;
+        }
+
+        public void AddCreaturesToMap(IMap map, IDictionary<CreatureTypes, int> creatureTypeAndTotalAmountGenerated)
+        {
+            CreatureGenerator creatureGenerator = new CreatureGenerator();
+            foreach(KeyValuePair<CreatureTypes, int> creatureTypeAndGeneratedAmount in creatureTypeAndTotalAmountGenerated)
+            {
+                ITile[] validCreatureTiles = GetValidCreatureTypes(map, creatureTypeAndGeneratedAmount.Key);
+                for(int generatedCreatures = 0; generatedCreatures < creatureTypeAndGeneratedAmount.Value; ++generatedCreatures)
+                {
+                    ITile tile = validCreatureTiles[rand.Next(0, validCreatureTiles.Length)];
+                    ICreature creature = creatureGenerator.GenerateCreature(creatureTypeAndGeneratedAmount.Key);
+                    tile.CreatureList.Add(creature);
+                }
+            }
+        }
+
+        private ITile[] GetValidCreatureTypes(IMap map, CreatureTypes creatureType)
+        {
+            switch (creatureType)
+            {
+                case CreatureTypes.Human:
+                    return map.Tiles.Where(x
+                         => x.TileValue == TileValues.Village
+                         || x.TileValue == TileValues.City
+                         || x.TileValue == TileValues.Fortress)
+                        .ToArray();
+                case CreatureTypes.Goblin:
+                case CreatureTypes.Troll:
+                    return map.Tiles.Where(x
+                         => x.TileValue == TileValues.Grassland
+                         || x.TileValue == TileValues.Forest)
+                        .ToArray();
+                default:
+                    return null;
+            }
         }
     }
 }

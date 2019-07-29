@@ -55,6 +55,7 @@ namespace GameOfBotLibTests
             AssertCreatureIsCorrect(creature, TypeCreature);
             AssertMonsterIsCorrect(creature, StartingGold);
         }
+
         private ICreature GetCreature(CreatureTypes creatureType)
         {
             CreatureGenerator generator = new CreatureGenerator();
