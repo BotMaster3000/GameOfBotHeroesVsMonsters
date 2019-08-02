@@ -51,11 +51,11 @@ namespace GameOfBotLibTests
             Assert.AreEqual(HourBeforeNextDay, time.Hour);
         }
 
-        private void IncreaseToValue(int numberToIncreaseTo, Action increaseAction, Func<int> controlFunction)
+        private void IncreaseToValue(int numberToIncreaseTo, Action<bool> increaseAction, Func<int> controlFunction)
         {
             while(controlFunction.Invoke() < numberToIncreaseTo)
             {
-                increaseAction.Invoke();
+                increaseAction.Invoke(true);
             }
             Assert.AreEqual(numberToIncreaseTo, controlFunction.Invoke());
         }
@@ -99,6 +99,55 @@ namespace GameOfBotLibTests
             IncreaseMinuteToOneBeforeNextHour(time);
             time.IncreaseMinute();
             Assert.AreEqual(currentDay + 1, time.Day);
+        }
+
+        [TestMethod]
+        public void TimeChangedEventTest_ExecutesOnlyOnceIfAllTimesChange()
+        {
+            Time time = new Time();
+            IncreaseHourToOneBeforeNextDay(time);
+            IncreaseMinuteToOneBeforeNextHour(time);
+            time.TimeChanged += IncreaseEventTriggerAmount;
+            time.IncreaseMinute();
+            const int ExpectedAmountOfStartedEvents = 1;
+            Assert.AreEqual(ExpectedAmountOfStartedEvents, eventTriggerEventCounter);
+        }
+
+        private int eventTriggerEventCounter;
+
+        private void IncreaseEventTriggerAmount(object sender, EventArgs e)
+        {
+            ++eventTriggerEventCounter;
+        }
+
+        [TestMethod]
+        public void TimeChangedEventTest_ExecutesOnDayChanged()
+        {
+            Time time = new Time();
+            time.TimeChanged += IncreaseEventTriggerAmount;
+            time.IncreaseDay();
+            const int ExpectedAmountOfStartedEvents = 1;
+            Assert.AreEqual(ExpectedAmountOfStartedEvents, eventTriggerEventCounter);
+        }
+
+        [TestMethod]
+        public void TimeChangedEventTest_ExecutesOnHourChanged()
+        {
+            Time time = new Time();
+            time.TimeChanged += IncreaseEventTriggerAmount;
+            time.IncreaseHour();
+            const int ExpectedAmountOfStartedEvents = 1;
+            Assert.AreEqual(ExpectedAmountOfStartedEvents, eventTriggerEventCounter);
+        }
+
+        [TestMethod]
+        public void TimeChangedEventTest_ExecutesOnMinuteChanged()
+        {
+            Time time = new Time();
+            time.TimeChanged += IncreaseEventTriggerAmount;
+            time.IncreaseMinute();
+            const int ExpectedAmountOfStartedEvents = 1;
+            Assert.AreEqual(ExpectedAmountOfStartedEvents, eventTriggerEventCounter);
         }
     }
 }

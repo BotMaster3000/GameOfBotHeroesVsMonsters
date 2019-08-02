@@ -14,29 +14,48 @@ namespace GameOfBotLib.Logic
         private const int HoursPerDay = 24;
         private const int MinutesPerHour = 60;
 
-        public void IncreaseDay()
+        public event EventHandler TimeChanged;
+
+        public void IncreaseDay(bool fireTimeChangedEvent = true)
         {
             ++Day;
+            if (fireTimeChangedEvent)
+            {
+                OnTimeChanged();
+            }
         }
 
-        public void IncreaseHour()
+        public void IncreaseHour(bool fireTimeChangedEvent = true)
         {
             ++Hour;
-            if(Hour >= HoursPerDay)
+            if (Hour >= HoursPerDay)
             {
                 Hour = 0;
-                IncreaseDay();
+                IncreaseDay(false);
+            }
+            if (fireTimeChangedEvent)
+            {
+                OnTimeChanged();
             }
         }
 
-        public void IncreaseMinute()
+        public void IncreaseMinute(bool fireTimeChangedEvent = true)
         {
             ++Minute;
-            if(Minute >= MinutesPerHour)
+            if (Minute >= MinutesPerHour)
             {
                 Minute = 0;
-                IncreaseHour();
+                IncreaseHour(false);
             }
+            if (fireTimeChangedEvent)
+            {
+                OnTimeChanged();
+            }
+        }
+
+        protected virtual void OnTimeChanged(EventArgs e = null)
+        {
+            TimeChanged?.Invoke(this, e);
         }
     }
 }

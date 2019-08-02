@@ -10,8 +10,10 @@ namespace GameOfBotLib.Interfaces
         int Hour { get; }
         int Minute { get; }
 
-        void IncreaseDay();
-        void IncreaseHour();
-        void IncreaseMinute();
+        public event EventHandler TimeChanged;
+
+        void IncreaseDay(bool fireTimeChangedEvent);
+        void IncreaseHour(bool fireTimeChangedEvent);
+        void IncreaseMinute(bool fireTimeChangedEvent);
     }
 }
