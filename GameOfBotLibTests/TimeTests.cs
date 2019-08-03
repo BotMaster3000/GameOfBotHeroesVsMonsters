@@ -51,11 +51,11 @@ namespace GameOfBotLibTests
             Assert.AreEqual(HourBeforeNextDay, time.Hour);
         }
 
-        private void IncreaseToValue(int numberToIncreaseTo, Action<bool> increaseAction, Func<int> controlFunction)
+        private void IncreaseToValue(int numberToIncreaseTo, Action increaseAction, Func<int> controlFunction)
         {
             while(controlFunction.Invoke() < numberToIncreaseTo)
             {
-                increaseAction.Invoke(true);
+                increaseAction.Invoke();
             }
             Assert.AreEqual(numberToIncreaseTo, controlFunction.Invoke());
         }

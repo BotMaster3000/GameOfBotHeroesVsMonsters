@@ -12,8 +12,8 @@ namespace GameOfBotLib.Interfaces
 
         public event EventHandler TimeChanged;
 
-        void IncreaseDay(bool fireTimeChangedEvent);
-        void IncreaseHour(bool fireTimeChangedEvent);
-        void IncreaseMinute(bool fireTimeChangedEvent);
+        void IncreaseDay();
+        void IncreaseHour();
+        void IncreaseMinute();
     }
 }

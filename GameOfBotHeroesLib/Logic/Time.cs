@@ -16,42 +16,55 @@ namespace GameOfBotLib.Logic
 
         public event EventHandler TimeChanged;
 
-        public void IncreaseDay(bool fireTimeChangedEvent = true)
+        public void IncreaseDay()
         {
             ++Day;
-            if (fireTimeChangedEvent)
+            OnTimeChanged();
+        }
+
+        private void IncreaseDayWithoutEvent()
+        {
+            ++Day;
+        }
+
+        public void IncreaseHour()
+        {
+            int hour = ++Hour;
+            IncrementTimeIfNeeded(ref hour,
+                HoursPerDay,
+                IncreaseDayWithoutEvent);
+            Hour = hour;
+            OnTimeChanged();
+        }
+
+        private void IncrementTimeIfNeeded(ref int timeNumber, int compareToTime, Action actionToExecuteIfNeeded)
+        {
+            if (timeNumber >= compareToTime)
             {
-                OnTimeChanged();
+                actionToExecuteIfNeeded?.Invoke();
+                timeNumber = 0;
             }
         }
 
-        public void IncreaseHour(bool fireTimeChangedEvent = true)
+        private void IncreaseHourWithoutEvent()
         {
-            ++Hour;
-            if (Hour >= HoursPerDay)
-            {
-                Hour = 0;
-                IncreaseDay(false);
-            }
-            if (fireTimeChangedEvent)
-            {
-                OnTimeChanged();
-            }
+            int hour = ++Hour;
+            IncrementTimeIfNeeded(ref hour,
+                HoursPerDay,
+                IncreaseDayWithoutEvent);
+            Hour = hour;
         }
 
-        public void IncreaseMinute(bool fireTimeChangedEvent = true)
+        public void IncreaseMinute()
         {
-            ++Minute;
-            if (Minute >= MinutesPerHour)
-            {
-                Minute = 0;
-                IncreaseHour(false);
-            }
-            if (fireTimeChangedEvent)
-            {
-                OnTimeChanged();
-            }
+            int minute = ++Minute;
+            IncrementTimeIfNeeded(ref minute,
+                MinutesPerHour,
+                IncreaseHourWithoutEvent);
+            Minute = minute;
+            OnTimeChanged();
         }
+
 
         protected virtual void OnTimeChanged(EventArgs e = null)
         {

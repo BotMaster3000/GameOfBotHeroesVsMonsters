@@ -8,5 +8,7 @@ namespace GameOfBotLib.Interfaces
     {
         IMap Map { get; }
         ITime Time { get; }
+
+        void NextTurn();
     }
 }
